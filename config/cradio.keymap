@@ -1,15 +1,42 @@
 // Copyright (c) 2022 The ZMK Contributors
 // SPDX-License-Identifier: MIT
-
+#include "./german_aliases.h"
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
-// Home row mods macro
-#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
+#define SYM 1
+#define MOV 2
+#define EXT 3
+
+#define HO(key) &ht LALT key
+#define HS(key) &ht LSHFT key
+#define HG(key) &ht LGUI key
+#define HC(key) &ht LCTL key
+#define KP(key) &kp key
+#define LAY(layername) &mo layername
+#define ST(key) &sk key
+
+#define COMBO(NAME, BINDINGS, KEYPOS) \
+  combo_##NAME { \
+    timeout-ms = <50>; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <0>; \
+  };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        COMBO(at, &kp LA(DE_L), 15 0)
+        COMBO(ae, &kp DE_AE, 15 10)
+        COMBO(sz, &kp DE_SS, 15 12)
+        COMBO(ue, &kp DE_UE, 14 7)
+        COMBO(oe, &kp DE_OE, 14 19)
+        COMBO(eur, &kp DE_EURO, 14 17)
+    };
+
     behaviors {
         ht: hold_tap {
             label = "hold_tap";
@@ -21,13 +48,14 @@
             global-quick-tap;
             bindings = <&kp>, <&kp>;
         };
-    };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+        skq: sticky_key_quick_release {
+            compatible = "zmk,behavior-sticky-key";
+            label = "STICKY_KEY_QUICK_RELEASE";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+            quick-release;
         };
     };
 
@@ -35,69 +63,37 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │
-            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │ ' "      │
-            HRML(A,        S,         D,         F)     &kp G          &kp H      HRMR(J,        K,         L,        SQT)
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
-            &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &lt 2 TAB   &kp ENTER     &kp SPACE  &lt 1 BSPC
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+                KP(DE_Q) KP(DE_W) KP(DE_F) KP(DE_P)  KP(DE_G)    KP(DE_J) KP(DE_L)  KP(DE_U)    KP(DE_Y)   KP(DE_QUES)
+                HC(DE_A) HO(DE_R) HS(DE_S) HG(DE_T)  KP(DE_D)    KP(DE_H) HG(DE_N)  HS(DE_E)    HO(DE_I)   HC(DE_O)
+                KP(DE_Z) KP(DE_X) KP(DE_C) KP(DE_V)  KP(DE_B)    KP(DE_K) KP(DE_M)  KP(DE_COMM) KP(DE_DOT) KP(DE_MINS)
+                                           KP(LSHFT) LAY(MOV)    LAY(SYM) KP(SPACE)
+            >;
+        }; 
+
+        symbols {
+            bindings = <
+                KP(DE_ASTR) KP(DE_HASH) KP(DE_QUOT) KP(DE_DQUO) KP(DE_AMPR)     KP(LA(N7))     KP(DE_EXLM) KP(DE_EQL)  KP(DE_DLR)  KP(DE_PLUS)
+                KP(N1)      KP(N2)      KP(N3)      KP(N4)      KP(N5)          KP(N6)         KP(N7)      KP(N8)      KP(N9)      KP(N0)
+                KP(DE_LABK) KP(LA(N5))  KP(DE_LPRN) KP(DE_LBRC) KP(DE_SLSH)     KP(LA(LS(N7))) KP(LA(N9))  KP(DE_RPRN) KP(LA(N6))  KP(DE_RABK)
+                                                    KP(LSHFT)   LAY(EXT)        &trans         &trans
             >;
         };
 
-        right_layer {
+        movement {
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ INSERT   │  1       │  2       │  3       │          │   │ HOME     │ PAGE DN  │ PAGE UP  │ END      │  :       │
-            &kp INS    &kp N1     &kp N2     &kp N3     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp COLON
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ DELETE   │  4       │  5       │  6       │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │  ;       │
-            &kp DEL    &kp N4     &kp N5     &kp N6     &trans         &kp LARW   &kp DARW   &kp UARW   &kp RARW   &kp SEMI
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
-           &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &kp ESC        &trans     &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+                KP(ESC)      KP(LC(DE_W)) KP(LC(DE_F))  KP(LC(DE_P)) KP(LC(DE_T))     KP(DEL)          KP(LC(LEFT))     KP(UP)      KP(LC(RIGHT)) KP(PG_UP)
+                &sk LCTL     &sk LALT     &sk LSHFT     &sk LGUI     KP(LG(SPACE))    KP(BSPC)         KP(LEFT)         KP(DOWN)    KP(RIGHT)     KP(PG_DN)
+                KP(LG(DE_Z)) KP(LG(DE_X)) KP(LG(DE_C))  KP(LG(DE_V)) KP(LA(DE_V))     KP(LC(LA(DE_T))) KP(LC(LS(DE_T))) KP(LS(TAB)) KP(TAB)       &trans
+                                                        &trans       &trans           LAY(EXT)         KP(RET)
             >;
         };
 
-        left_layer {
+        extra {
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │  [       │  {       │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │
-            &trans     &kp LBKT   &kp LBRC   &kp RBRC   &trans         &kp CARET  &kp LPAR   &kp RPAR   &kp RBKT   &kp TILDE
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  !       │  @       │  #       │  $       │  %       │   │  *       │  -       │  =       │  \       │  `       │
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp ASTRK  &kp MINUS  &kp EQUAL  &kp BSLH   &kp GRAVE
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │  &       │  _       │  +       │  │       │          │
-            &trans     &trans     &trans     &trans     &trans         &kp AMPS   &kp UNDER  &kp PLUS   &kp PIPE   &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
-
-        tri_layer {
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ RESET    │          │          │          │PROFILE 0 │   │          │          │          │          │  RESET   │
-            &reset     &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans      &reset
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│BOOTLOADER│          │          │          │PROFILE 1 │   │          │          │          │          │BOOTLOADER│
-          &bootloader  &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans    &bootloader
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │ CLEAR BT │PROFILE 2 │   │          │          │          │          │          │
-            &trans     &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans     &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+                KP(DE_CIRC)  KP(DE_PERC) KP(DE_GRV)  KP(LA(DE_N))  &trans      &trans KP(F7) KP(F8) KP(F9) KP(F10)
+                KP(LCTL)     KP(LALT)    KP(LSHFT)   KP(LGUI)      KP(LGUI)    &trans KP(F4) KP(F5) KP(F6) KP(F11)
+                &trans       &trans      &trans      &trans        &trans      &trans KP(F1) KP(F2) KP(F3) KP(F12)
+                                                     &trans        &trans      &trans &trans
             >;
         };
     };
