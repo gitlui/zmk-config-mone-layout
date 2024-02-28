@@ -90,10 +90,10 @@
 
         extra {
             bindings = <
-                KP(DE_CIRC)  KP(DE_PERC) KP(DE_GRV)  KP(LA(DE_N))  &trans      &trans KP(F7) KP(F8) KP(F9) KP(F10)
-                KP(LCTL)     KP(LALT)    KP(LSHFT)   KP(LGUI)      KP(LGUI)    &trans KP(F4) KP(F5) KP(F6) KP(F11)
-                &trans       &trans      &trans      &trans        &trans      &trans KP(F1) KP(F2) KP(F3) KP(F12)
-                                                     &trans        &trans      &trans &trans
+                KP(DE_CIRC)    KP(DE_PERC) KP(DE_GRV)  KP(LA(DE_N))  &trans      &trans KP(F7) KP(F8) KP(F9) KP(F10)
+                KP(LCTL)       KP(LALT)    KP(LSHFT)   KP(LGUI)      KP(LGUI)    &trans KP(F4) KP(F5) KP(F6) KP(F11)
+                &bt BT_CLR_ALL &trans      &trans      &trans        &trans      &trans KP(F1) KP(F2) KP(F3) KP(F12)
+                                                       &trans        &trans      &trans &trans
             >;
         };
     };
