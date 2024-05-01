@@ -1,66 +1,73 @@
-// Copyright (c) 2022 The ZMK Contributors
-// SPDX-License-Identifier: MIT
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
 
 #define SYM 1
 #define MOV 2
 #define EXT 3
 
-#define COMBO(NAME, BINDINGS, KEYPOS) \
-  combo_##NAME { \
-    timeout-ms = <50>; \
-    bindings = <BINDINGS>; \
-    key-positions = <KEYPOS>; \
-    layers = <0>; \
-  };
-
 / {
     combos {
         compatible = "zmk,combos";
-        combo_at { \
-            timeout-ms = <50>; \
-            bindings = &kp LA(L); \
-            key-positions = 15 0; \
-            layers = <0>; \
+
+        type_at {
+            timeout-ms = <50>;
+            bindings = <&kp LA(L)>;
+            key-positions = <15 0>;
+            layers = <0>;
         };
 
-        combo_ae { \
-            timeout-ms = <50>; \
-            bindings = &kp SINGLE_QUOTE; \
-            key-positions = 15 10; \
-            layers = <0>; \
-          };
-
-        combo_sz { \
-            timeout-ms = <50>; \
-            bindings = &kp MINUS; \
-            key-positions = 15 12; \
-            layers = <0>; \
+        type_ae {
+            timeout-ms = <50>;
+            bindings = <&kp SINGLE_QUOTE>;
+            key-positions = <15 10>;
+            layers = <0>;
         };
 
-        combo_ue { \
-            timeout-ms = <50>; \
-            bindings = &kp LEFT_BRACKET; \
-            key-positions = 14 7; \
-            layers = <0>; \
-          };
+        type_sz {
+            timeout-ms = <50>;
+            bindings = <&kp MINUS>;
+            key-positions = <15 12>;
+            layers = <0>;
+        };
 
-        combo_oe { \
-            timeout-ms = <50>; \
-            bindings = &kp SEMICOLON; \
-            key-positions = 14 19; \
-            layers = <0>; \
-          };
+        type_ue {
+            timeout-ms = <50>;
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <14 7>;
+            layers = <0>;
+        };
 
-        combo_eur { \
-            timeout-ms = <50>; \
-            bindings = &kp RA(E); \
-            key-positions = 14 17; \
-            layers = <0>; \
-          };
+        type_oe {
+            timeout-ms = <50>;
+            bindings = <&kp SEMICOLON>;
+            key-positions = <14 19>;
+            layers = <0>;
+        };
+
+        type_eur {
+            timeout-ms = <50>;
+            bindings = <&kp RA(E)>;
+            key-positions = <14 17>;
+            layers = <0>;
+        };
+
+        backspace {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <7 6>;
+            layers = <0 1>;
+        };
+
+        delete_left_hand {
+            bindings = <&kp DELETE>;
+            key-positions = <2 3>;
+        };
+
+        mouse_click {
+            bindings = <&mkp LCLK>;
+            key-positions = <20 21>;
+        };
     };
 
     behaviors {
@@ -87,39 +94,40 @@
 
     keymap {
         compatible = "zmk,keymap";
+
         default_layer {
             bindings = <
-                &kp Q      &kp W      &kp F       &kp P       &kp G      &kp J    &kp L       &kp U        &kp Z       &kp LS(MINUS)
-                &ht LCTL A &ht LALT R &ht LSHFT S &ht LGUI T  &kp D      &kp H    &ht LGUI N  &ht LSHFT E  &ht LALT I  &ht LCTL O
-                &kp Y      &kp X      &kp C       &kp V       &kp B      &kp K    &kp M       &kp COMMA    &kp PERIOD  &kp SLASH
-                                                  &kp LSHFT   &mo MOV    &mo SYM  &kp SPACE
+&kp Q               &kp W       &kp F        &kp P       &kp G      &kp J    &kp L       &kp U        &kp Z       &kp LS(MINUS)
+&ht LEFT_CONTROL A  &ht LALT R  &ht LSHFT S  &ht LGUI T  &kp D      &kp H    &ht LGUI N  &ht LSHFT E  &ht LALT I  &ht RIGHT_CONTROL O
+&kp Y               &kp X       &kp C        &kp V       &kp B      &kp K    &kp M       &kp COMMA    &kp PERIOD  &kp SLASH
+                                             &kp LSHFT   &mo MOV    &mo SYM  &kp SPACE
             >;
-        }; 
+        };
 
         symbols {
             bindings = <
-                &kp LS(RIGHT_BRACKET) &kp NON_US_HASH &kp LS(NON_US_HASH) &kp LS(NUMBER_2) &kp LS(NUMBER_6)     &kp LA(N7)     &kp LS(NUMBER_1) &kp LS(NUMBER_0)  &kp LS(NUMBER_4)  &kp RIGHT_BRACKET
-                &kp N1                &kp N2          &kp N3              &kp N4           &kp N5               &kp N6         &kp N7           &kp N8            &kp N9            &kp N0
-                &kp NON_US_BACKSLASH  &kp LA(N5)      &kp LS(NUMBER_8)    &kp RA(NUMBER_8) &kp LS(NUMBER_7)     &kp LA(LS(N7)) &kp LA(N9)       &kp LS(NUMBER_9)  &kp LA(N6)        &kp LS(NON_US_BACKSLASH)
-                                                                          &kp LSHFT        &mo EXT              &trans         &trans
+&kp LS(RIGHT_BRACKET)  &kp NON_US_HASH  &kp LS(NON_US_HASH)  &kp LS(NUMBER_2)  &kp LS(NUMBER_6)    &kp LA(N7)      &kp LS(NUMBER_1)  &kp LS(NUMBER_0)  &kp LS(NUMBER_4)  &kp RIGHT_BRACKET
+&kp N1                 &kp N2           &kp N3               &kp N4            &kp N5              &kp N6          &kp N7            &kp N8            &kp N9            &kp N0
+&kp NON_US_BACKSLASH   &kp LA(N5)       &kp LS(NUMBER_8)     &kp RA(NUMBER_8)  &kp LS(NUMBER_7)    &kp LA(LS(N7))  &kp LA(N9)        &kp LS(NUMBER_9)  &kp LA(N6)        &kp LS(NON_US_BACKSLASH)
+                                                             &kp LSHFT         &mo EXT             &trans          &trans
             >;
         };
 
         movement {
             bindings = <
-                &kp ESC   &kp LC(W) &kp LC(F)  &kp LC(P) &kp LC(T)        &kp DEL       &kp LC(LEFT)  &kp UP      &kp LC(RIGHT) &kp PG_UP
-                &sk LCTL  &sk LALT  &sk LSHFT  &sk LGUI  &kp LG(SPACE)    &kp BSPC      &kp LEFT      &kp DOWN    &kp RIGHT     &kp PG_DN
-                &kp LG(Y) &kp LG(X) &kp LG(C)  &kp LG(V) &kp LA(V)        &kp LC(LA(T)) &kp LC(LS(T)) &kp LS(TAB) &kp TAB       &trans
-                                               &trans    &trans           &mo EXT       &kp RET
+&kp ESC           &kp LC(W)  &kp LC(F)  &kp LC(P)  &kp LC(T)        &kp DEL        &kp LC(LEFT)   &kp UP       &kp LC(RIGHT)  &kp PG_UP
+&sk LEFT_CONTROL  &sk LALT   &sk LSHFT  &sk LGUI   &kp LG(SPACE)    &kp BSPC       &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_DN
+&kp LG(Y)         &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LA(V)        &kp LC(LA(T))  &kp LC(LS(T))  &kp LS(TAB)  &kp TAB        &trans
+                                        &trans     &trans           &mo EXT        &kp RET
             >;
         };
 
         extra {
             bindings = <
-                &kp GRAVE      &kp LS(NUMBER_5) &kp LS(EQUAL)  &kp LA(N)  &trans      &trans &kp F7 &kp F8 &kp F9 &kp F10
-                &kp LCTL       &kp LALT         &kp LSHFT      &kp LGUI   &kp LGUI    &trans &kp F4 &kp F5 &kp F6 &kp F11
-                &bt BT_CLR_ALL &trans           &trans         &trans     &trans      &trans &kp F1 &kp F2 &kp F3 &kp F12
-                                                               &trans     &trans      &trans &trans
+&kp GRAVE         &kp LS(NUMBER_5)  &kp LS(EQUAL)  &kp LA(N)  &trans      &trans  &kp F7  &kp F8  &kp F9  &kp F10
+&kp LEFT_CONTROL  &kp LALT          &kp LSHFT      &kp LGUI   &kp LGUI    &trans  &kp F4  &kp F5  &kp F6  &kp F11
+&bt BT_CLR_ALL    &trans            &trans         &trans     &trans      &trans  &kp F1  &kp F2  &kp F3  &kp F12
+                                                   &trans     &trans      &trans  &trans
             >;
         };
     };
