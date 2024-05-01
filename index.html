@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap" rel="stylesheet">
+    <title>MONE layout</title>
+    <style>
+
+        body {
+            font-family: 'Jura', Arial, sans-serif;
+            font-size: 18px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #1f1f1f;
+            color: #cbb6f8;
+        }
+
+        main {
+            max-width: 80%;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 5rem;
+            color: #8576FF;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 3rem;
+            color: #8576FF;
+        }
+
+        h3 {
+            margin-top: 2rem;
+            color: #8576FF;
+        }
+
+        .textbox {
+            border: 1px solid #444746;
+            border-radius: 1rem;
+            max-width: 80%;
+            display: block;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .layer {
+            padding: 1rem;
+            background-color: #25232a;
+            display: grid;
+            grid-template-columns: repeat(5, 4rem) 2rem repeat(5, 4rem);
+            grid-template-rows: repeat(4, 4rem);
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: 1rem;
+            border: 1px solid #444746;
+        }
+
+        .key {
+            background-color: #4f378b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            word-wrap: break-word;
+            text-align: center;
+            padding: 0.25rem;
+        }
+
+
+        .combos {
+            display: grid;
+            margin: 1rem 0;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 0.5rem;
+        }
+
+        .combo {
+            display: grid;
+            grid-template-columns: repeat(4, 4rem);
+            grid-template-rows: 4rem;
+            grid-gap: 0.5rem;
+        }
+
+        .arrow {
+            max-width: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            word-wrap: break-word;
+            text-align: center;
+            padding: 0.25rem;
+        }
+    </style>
+
+</head>
+<body>
+<main>
+    <h1>MONE LAYOUT by gitlui</h1>
+
+    <div class="textbox">
+        <p>This is my daily driving layout that I have been using since early 2023. It is designed to be used with a 40% keyboard (ferris sweep) on a MAC. If you want a windows/linux version just request it as I had that before. There have been some iterations first, but now it has been quite stable.</p>
+        <p>I use the colemak layout but the alpha layer can also be used with qwertz or qwerty. I tried to use it with qwerz but didn't know what key to put where the 'o' in colemak is :D</p>
+    </div>
+
+    <h2>KEYBOARD LAYOUT</h2>
+    <div>
+        <h3>ALPHAS</h3>
+        <div class="layer">
+            <div class="key">Q</div>
+            <div class="key">W</div>
+            <div class="key">F</div>
+            <div class="key">P</div>
+            <div class="key">G</div>
+            <div></div>
+            <div class="key">J</div>
+            <div class="key">L</div>
+            <div class="key">U</div>
+            <div class="key">Y</div>
+            <div class="key">?</div>
+
+            <div class="key">A</div>
+            <div class="key">R</div>
+            <div class="key">S</div>
+            <div class="key">T</div>
+            <div class="key">D</div>
+            <div></div>
+            <div class="key">H</div>
+            <div class="key">N</div>
+            <div class="key">E</div>
+            <div class="key">I</div>
+            <div class="key">O</div>
+
+            <div class="key">Z</div>
+            <div class="key">X</div>
+            <div class="key">C</div>
+            <div class="key">V</div>
+            <div class="key">B</div>
+            <div></div>
+            <div class="key">K</div>
+            <div class="key">M</div>
+            <div class="key">,</div>
+            <div class="key">.</div>
+            <div class="key">-</div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="key">SHIFT</div>
+            <div class="key">MOV</div>
+            <div></div>
+            <div class="key">SYM</div>
+            <div class="key">SPACE</div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <h3>SYMBOLS (SYM)</h3>
+        <div class="layer">
+            <div class="key">*</div>
+            <div class="key">#</div>
+            <div class="key">'</div>
+            <div class="key">"</div>
+            <div class="key">&</div>
+            <div></div>
+            <div class="key">|</div>
+            <div class="key">!</div>
+            <div class="key">=</div>
+            <div class="key">$</div>
+            <div class="key">+</div>
+
+            <div class="key">1</div>
+            <div class="key">2</div>
+            <div class="key">3</div>
+            <div class="key">4</div>
+            <div class="key">5</div>
+            <div></div>
+            <div class="key">6</div>
+            <div class="key">7</div>
+            <div class="key">8</div>
+            <div class="key">9</div>
+            <div class="key">0</div>
+
+            <div class="key"><</div>
+            <div class="key">[</div>
+            <div class="key">(</div>
+            <div class="key">{</div>
+            <div class="key">/</div>
+            <div></div>
+            <div class="key">\</div>
+            <div class="key">}</div>
+            <div class="key">)</div>
+            <div class="key">]</div>
+            <div class="key">></div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="key">SHIFT</div>
+            <div class="key">EXT</div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <h3>MOVEMENT (MOV)</h3>
+        <div class="layer">
+            <div class="key">ESC</div>
+            <div class="key">CMD + W</div>
+            <div class="key">CMD + F</div>
+            <div class="key">CMD + P</div>
+            <div class="key">CMD + T</div>
+            <div></div>
+            <div class="key">DEL</div>
+            <div class="key">CTR + LEFT</div>
+            <div class="key">UP</div>
+            <div class="key">CTR + RIGHT</div>
+            <div class="key">PAGE UP</div>
+
+            <div class="key">CTR</div>
+            <div class="key">OPT</div>
+            <div class="key">SHIFT</div>
+            <div class="key">GUI</div>
+            <div class="key">GUI + SPACE</div>
+            <div></div>
+            <div class="key">BACK SPACE</div>
+            <div class="key">LEFT</div>
+            <div class="key">DOWN</div>
+            <div class="key">RIGHT</div>
+            <div class="key">PAGE DOWN</div>
+
+            <div class="key">CMD + Z</div>
+            <div class="key">CMD + X</div>
+            <div class="key">CMD + C</div>
+            <div class="key">CMD + V</div>
+            <div class="key">OPT + V</div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key">CTR + OPT + T</div>
+            <div class="key">SHIFT + TAB</div>
+            <div class="key">TAB</div>
+            <div class="key"></div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div></div>
+            <div class="key">EXT</div>
+            <div class="key">RETURN</div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <h3>EXTRA (EXT)</h3>
+        <div class="layer">
+            <div class="key">^</div>
+            <div class="key">%</div>
+            <div class="key">`</div>
+            <div class="key">~</div>
+            <div class="key"></div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key">F7</div>
+            <div class="key">F8</div>
+            <div class="key">F9</div>
+            <div class="key">F10</div>
+
+            <div class="key">CTR</div>
+            <div class="key">OPT</div>
+            <div class="key">SHIFT</div>
+            <div class="key">GUI</div>
+            <div class="key">GUI</div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key">F4</div>
+            <div class="key">F5</div>
+            <div class="key">F6</div>
+            <div class="key">F11</div>
+
+            <div class="key">BT CLR ALL</div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key">F1</div>
+            <div class="key">F2</div>
+            <div class="key">F3</div>
+            <div class="key">F12</div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div></div>
+            <div class="key"></div>
+            <div class="key"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <h2>COMBOS</h2>
+    <div class="textbox" >
+        <p>Here are some combos that I use frequently. Some were added to allow me to use the split keyboard with one hand for DEL or BACKSPACE as they are not reachable without both hands normally</p>
+        <p>Also, I added several combos to be able to type some special characters like: ö ü ß @ €</p>
+        <p>For the mouse left click I use the Z and X key combo as I use a trackpad, and it is much easier to drag and drop using this combo.</p>
+    </div>
+    <div class="combos">
+        <div class="combo">
+            <div class="key">
+                H
+            </div>
+            <div class="key">
+                A
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                Ä
+            </div>
+        </div>
+
+        <div class="combo">
+            <div class="key">
+                H
+            </div>
+            <div class="key">
+                Q
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                @
+            </div>
+        </div>
+        <div class="combo">
+            <div class="key">
+                H
+            </div>
+            <div class="key">
+                S
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                ß
+            </div>
+        </div>
+
+        <div class="combo">
+            <div class="key">
+                D
+            </div>
+            <div class="key">
+                O
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                Ö
+            </div>
+        </div>
+        <div class="combo">
+            <div class="key">
+                D
+            </div>
+            <div class="key">
+                U
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                Ü
+            </div>
+        </div>
+        <div class="combo">
+            <div class="key">
+                D
+            </div>
+            <div class="key">
+                E
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                €
+            </div>
+        </div>
+        <div class="combo">
+            <div class="key">
+                Z
+            </div>
+            <div class="key">
+                X
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                MOUSE LEFT
+            </div>
+        </div>
+        <div class="combo">
+            <div class="key">
+                F
+            </div>
+            <div class="key">
+                P
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                DEL
+            </div>
+        </div>
+
+        <div class="combo">
+            <div class="key">
+                L
+            </div>
+            <div class="key">
+                U
+            </div>
+            <div class="arrow">=></div>
+            <div class="key">
+                BACK SPACE
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>
