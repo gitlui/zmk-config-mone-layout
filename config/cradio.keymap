@@ -64,8 +64,18 @@
             key-positions = <2 3>;
         };
 
-        mouse_click {
+        left_click {
             bindings = <&mkp LCLK>;
+            key-positions = <22 23>;
+        };
+
+        middle_click {
+            bindings = <&mkp MCLK>;
+            key-positions = <21 22>;
+        };
+
+        right_click {
+            bindings = <&mkp RCLK>;
             key-positions = <20 21>;
         };
     };
